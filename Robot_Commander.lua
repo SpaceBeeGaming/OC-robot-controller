@@ -52,10 +52,10 @@ end
 -- End Screens
 
 -- Other Functions
-function latestCommand(lastCommand)
+function latestCommand(latestCommand)
   term.setCursor(1, 49)
   term.clearLine()
-  term.write("Command: " .. lastCommand)
+  term.write("Command: " .. latestCommand)
 end
 
 function commandResponse()
@@ -81,7 +81,8 @@ function robotConnected()
 end
 
 function close_GUI()
-  os.execute("resolution default")
+  local w, h = gpu.maxResolution()
+  gpu.setResolution(w, h)
   term.clear()
   term.setCursorBlink(true)
   screen.setTouchModeInverted(false)
