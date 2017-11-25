@@ -1,0 +1,9 @@
+move:U
+move:F
+move:D
+move:B
+move:L
+move:R
+move:R
+move:A
+move:R
