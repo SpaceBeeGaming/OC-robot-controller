@@ -90,7 +90,6 @@ function close_GUI()
   os.exit()
 end
 
-
 -- End Other Functions
 
 --Button Functions
@@ -137,7 +136,6 @@ function lost_contact_quit()
   buttonAPI.toggleButton("Quit")
   close_GUI()
 end
-
 
 --End Button Functions
 
