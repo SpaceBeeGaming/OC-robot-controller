@@ -13,13 +13,17 @@ BUT, i have updated it to include the additional feature made after it was porte
 # To use:
 1. download a copy of the repo and unzip it
 
-2. move the "buttonAPI.lua" file to the "lib" folder on your "computer".
+2. Move files below to corresponding folders
+
+                 "FILE:"                "WHERE"                "ON:"
+                 
+            "buttonAPI.lua"             "lib"                "computer"
             
-            "Robot_Commander.lua"       "root"               "computer".
+            "Robot_Commander.lua"       "root"               "computer"
             
-            "robot_remote.lua"          "bin"                "computer".
+            "robot_remote.lua"          "bin"                "computer"
             
-            "robotLib.lua"              "root"               "robot".
+            "robotLib.lua"              "root"               "robot"
 
 3. navigate to "home" directory (boots here by default) type the command "edit .shrc" without quotes and add th following "/robotLib.lua" without quotes
 
@@ -27,6 +31,6 @@ BUT, i have updated it to include the additional feature made after it was porte
 
 5. You'll have to use T3 server or a creative case. (by default you need T3 graphics card and the linked card is also T3)
 
-6. Create an issue if you cant get it to work.
+6. Create an issue if you can't get it to work.
 
 7. Pastebin links to come:
