@@ -7,7 +7,8 @@ local shell = require("shell")
 
 -- program arguments and absolute path of the scripts directory.
 local args = { ... }
-local path = string.sub(shell.resolve(process.info().path), 1, 10) .. "scripts/"
+local pathLength = string.len(shell.resolve(process.info().path)) - 19
+local path = string.sub(shell.resolve(process.info().path), 1, pathLength) .. "scripts/"
 
 --First the program checks whether there is a "scripts" directory in the directory the program was run from.
 if not (fs.isDirectory(path)) then
