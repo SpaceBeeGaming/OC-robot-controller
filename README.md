@@ -1,5 +1,6 @@
 # OC_robot_commander
-This set of scripts allows you to control an OpenComputers robot from OC computer using buttons.
+This set of scripts allows you to control an OpenComputers robot from OC computer using buttons. 
+It is also possible to use easyish scripts to create action sequences. 
 
 # DISCLAIMER:
 This script isn't even done yet. You can currently only move up and down. (Have been busy working on the backend stuff.)
@@ -21,7 +22,7 @@ BUT, i have updated it to include the additional feature made after it was porte
             
             "Robot_Commander.lua"       "root"               "computer"
             
-            "robot_remote.lua"          "bin"                "computer"
+            "robot_Remote.lua"          "bin"                "computer"
             
             "robotLib.lua"              "root"               "robot"
 
@@ -34,3 +35,29 @@ BUT, i have updated it to include the additional feature made after it was porte
 6. Create an issue if you can't get it to work.
 
 7. Pastebin links to come:
+
+# Scripting
+robot_Remote_Script.lua is a program that runs the script specified in arguments.
+
+#### You'll need to have the robot_Remote.lua and robotLib.lua like in the manual commader. also do step 3 of the usage instructions.
+
+the demoScript.txt file is a simple script.
+###### Currently supported commands:
+
+"move:<direction>"   direction ["F,B,L,R,A,U,D"] move/turn the robot to the direction specified, 
+
+   if invalid direction gives response "move:NIL_done" >> Parsed by robot_Remote_Script.lua to user readable format.
+  
+"reboot" reboots the robot, if setup correctly it should start robotLib automatically.
+
+"quit" quits the robotLib program.
+
+"connected" simply sends back a confirmation that the robotLib is running.
+
+If command vas invalid the robot vill give a "nil_command" response, which is parsed by robot_Remote_Script.lua to user readable format.
+
+###### You can also run the script commands manually 
+Typing "robot_Remote '-r' <one of the commands above>" without quotes.
+  
+-r is optional parameter that will wait for the response from the robot.
+  
