@@ -25,7 +25,7 @@ BUT, i have updated it to include the additional feature made after it was porte
             
             "robotLib.lua"              "root"               "robot"
 
-3. navigate to "home" directory (boots here by default) type the command "edit .shrc" without quotes and add th following "/robotLib.lua" without quotes
+3. navigate to "home" directory on the robot (boots here by default) type the command "edit .shrc" without quotes and add the following "/robotLib.lua" without quotes.
 
 4. Ensure that both the computer and the robot have a linked card.
 
