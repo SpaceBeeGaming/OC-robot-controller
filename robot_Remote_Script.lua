@@ -37,7 +37,6 @@ else
       local script_built = {}
 
       --Assings a numbers for the values in the "script" table and adds the command name in front of the values.
-      --Table u = {"y","x",...} turns into t = { [1] = "robot_Reemote y", [2] = "robot_Remote x" }
       for step, command in ipairs(script) do
         script_built[step] = "robot_Remote " .. command
         print("Parsing: " .. script_built[step])
@@ -47,11 +46,18 @@ else
       for step = 1, #script_built do
         os.execute(script_built[step])
         print(step .. ". Executing: " .. script_built[step])
+
         --Registers an event and waits until gets the response.
         local _, _, _, _, _, response = event.pull("modem_message")
-        print(step .. ". Responce: " .. response)
+        --Checks if response indicates to unkown command.
+        if (response == "nil_command") then print(step .. ". Invalid command: " .. script_built[step])
+        elseif (response == "move:NIL_done") then print(step .. ". Invalid direction: " .. script_built[step])
+        else
+          print(step .. ". Responce: " .. response)
+        end
       end
     else
+
       --If the file was not opened, instructs the user to check where the script should be located. Then it gives a
       -- -- list of found scripts.
       print("Script not found: place your script in: " .. path)
