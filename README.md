@@ -3,7 +3,7 @@ This set of scripts allows you to control an OpenComputers robot from OC compute
 It is also possible to use easyish scripts to create action sequences. 
 
 # DISCLAIMER:
-This script isn't even done yet. You can currently only move up and down. (Have been busy working on the backend stuff.)
+This script isn't even done yet. You can currently move ~~only up and down.~~ in all directions (Have been busy working on the backend stuff.)
 
 the buttonAPI is originally created by dw20 (minecraft youtuber) for ComputerCraft and ported by the guy in the link, 
 
@@ -39,7 +39,7 @@ BUT, i have updated it to include the additional feature made after it was porte
 # Scripting
 robot_Remote_Script.lua is a program that runs the script specified in arguments.
 
-#### You'll need to have the robot_Remote.lua and robotLib.lua like in the manual commader. also do step 3 of the usage instructions.
+**You'll need to have the robot_Remote.lua and robotLib.lua like in the manual commader. also do step 3 of the usage instructions.**
 
 the demoScript.txt file is a simple script.
 ###### Currently supported commands:
