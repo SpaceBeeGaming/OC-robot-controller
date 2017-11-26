@@ -72,7 +72,7 @@ function screen_close_GUI_final()
   buttonAPI.setTable("Yes", close_GUI_final, "Yes", 10, 45, 24, 26)
   buttonAPI.setTable("No", close_GUI_final, "No", 55, 90, 24, 26)
   buttonAPI.screen()
-  buttonAPI.label(1, 22, "Are you sure?", true)
+  buttonAPI.label(1, 22, "Close the user interface?", true)
   buttonAPI.label(1, 28, "This WON'T terminate the robot connection.", true)
   buttonAPI.label(1, 29, "Use this if you want to finetune the button layout.", true)
 end
@@ -218,7 +218,7 @@ function close_GUI_final(answer) --Function to exit the "Robot Commander"
     os.exit()
   else
     buttonAPI.flash("No")
-    screen_move()
+    if (robotConnected()) then screen_move() else screen_lost_contact() end
   end
 end
 
