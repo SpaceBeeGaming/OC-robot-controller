@@ -17,7 +17,7 @@ function validCommand(command)
   -- -- prints user understandable error message if the command was not understood.
   if (command == "nil_command") then
     print("Error: Not a valid command")
-  else print("Command: " .. command)
+  else print("Response: " .. command)
   end
 end
 

@@ -14,6 +14,14 @@ function move(direction)
   --Takes the direction as sent by the main program loop "F,B,L,R,A,U or D" and prints the command.
   print("move: " .. direction)
 
+  --Function that gets called when the move couldn't be completed, and sends the corresponding error data.
+  function sendReason(dir_letter, reason)
+    if (reason == "entity") then tunnel.send("move:" .. dir_letter .. "_unable_entity")
+    elseif (reason == "solid") then tunnel.send("move:" .. dir_letter .. "_unable_solid")
+    else tunnel.send("move:" .. dir_letter .. "_unable_other")
+    end
+  end
+
   --Determines what to do based on specified direction
   if (direction == "F") then
     local val, reason = robot.forward()
@@ -43,15 +51,7 @@ function move(direction)
     local val, reason = robot.down()
     if (val) then tunnel.send("move:D_done") else sendReason(direction, reason) end
 
-  else tunnel.send("move:NIL_done") print("nil")
-  end
-
-  --Function that gets called when the move couldn't be completed, and sends the corresponding error data.
-  function sendReason(dir_letter, reason)
-    if (reason == "entity") then tunnel.send("move:" .. dir_letter .. "_unable_entity")
-    elseif (reason == "solid") then tunnel.send("move:" .. dir_letter .. "_unable_solid")
-    else tunnel.send("move:" .. dir_letter .. "_unable_other")
-    end
+  else tunnel.send("move:NIL_done")
   end
 
   print()
@@ -68,7 +68,7 @@ os.sleep(0.25)
 computer.beep(1000)
 
 --Inform controller that robot is ready to accept commands >> Used after reboot
-tunnel.send("robot_started")
+tunnel.send("robot_booted")
 
 --Function to easily determine if string contains the specified string.
 function string.contains(message_st, pattern)
