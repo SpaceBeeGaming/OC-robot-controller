@@ -10,7 +10,7 @@ the buttonAPI is originally created by dw20 (minecraft youtuber) for ComputerCra
 BUT, i have updated it to include the additional feature made after it was ported. so the original demo in the link above **won't** work.
 
 # Contributing
-If you want to contribute, please read the [Contributing](../master/CONTRBUTING.md) guidelines.
+If you want to contribute, please read the [Contributing](../master/CONTRIBUTING.md) guidelines.
 
 # To use:
 1. download a copy of the repo and unzip it
