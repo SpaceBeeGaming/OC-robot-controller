@@ -1,17 +1,19 @@
---Resets the "buttonAPI" package in order to make debugging easier.
+--Resets library packages in order to make debugging easier. --TODO: Remove these!
 package.loaded.buttonAPI = nil
+package.loaded.helpers = nil
 
 --Requires
 buttonAPI = require("buttonAPI")
 local component = require("component")
---local computer = require("computer") --Going to be used later
 local gpu = component.gpu
 local screen = component.screen
 local event = require("event")
 local fs = require("filesystem")
+local helpers = require("helpers")
 local term = require("term")
 
-assert(fs.exists("/bin/robot_Remote.lua"), "No robot_Remote.lua detected in /bin") --TODO: Test this!
+--Errors if file is not found.
+assert(fs.exists("/bin/robot_Remote.lua"), "'No robot_Remote.lua' detected in '/bin'") --TODO: Test this!
 --End Requires
 
 local retryCount = 0
@@ -43,8 +45,8 @@ end
 
 function screen_lost_contact()
   buttonAPI.clearTable()
-  buttonAPI.setTable("Retry", robot_lost_contact, "RETRY", 10, 45, 24, 26)
-  buttonAPI.setTable("Quit", robot_lost_contact, "QUIT", 55, 90, 24, 26)
+  buttonAPI.setTable("Retry", robot_lost_contact, "Retry", 10, 45, 24, 26)
+  buttonAPI.setTable("Quit", robot_lost_contact, "Quit", 55, 90, 24, 26)
   buttonAPI.screen()
   buttonAPI.label(1, 22, "No connection!", true)
   gpu.setForeground(0xFF0000)
@@ -86,8 +88,10 @@ end
 --- Function that get called behind the scenes by other functions.
 function latestCommand(latestCommand) --Prints the latest command sent to the robot on the screen.
   local text
-  if (string.match(latestCommand, "C:")) then text = string.sub(latestCommand, 3)
-  else text = "Command: " .. latestCommand
+  if (helpers.string_contains(latestCommand, "C:", false)) then
+    text = string.sub(latestCommand, 3)
+  else
+    text = "Command: " .. latestCommand
   end
 
   term.setCursor(1, 49)
@@ -103,9 +107,7 @@ function commandResponse()
     retryCount = 0
     screen_lost_contact()
   else
-    term.setCursor(1, 50)
-    term.clearLine()
-    term.write("Last Command reply: " .. message)
+    helpers.writeLine(1, 50, true, "Last Command reply: " .. message)
     return true
   end
 end
@@ -205,7 +207,7 @@ function reboot_robot()
   local command = "robot_Remote reboot"
   os.execute(command)
   latestCommand("C:Rebooting...")
-  if (reboot_robot_result()) then term.clearLine() term.write("Rebooted") buttonAPI.toggleButton("Reboot") end
+  if (reboot_robot_result()) then helpers.writeLine(1, 50, true, "Rebooted") buttonAPI.toggleButton("Reboot") end
 end
 
 
@@ -238,7 +240,7 @@ function quit_robot_final(answer)
 end
 
 function robot_lost_contact(answer)
-  if (answer == "RETRY") then
+  if (answer == "Retry") then
     buttonAPI.toggleButton("Retry")
     if (robotConnected()) then screen_move() end
   else
