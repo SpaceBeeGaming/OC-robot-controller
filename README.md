@@ -62,7 +62,7 @@ the `demoScript.txt` file is a simple script.
 If command vas invalid the robot vill give a `nil_command` response, which is parsed by `robot_Remote_Script.lua` to user readable format.
 
 ###### You can also run the script commands manually 
-Typing `robot_Remote '-r' <one of the commands above>` without quotes.
+Typing `robot_Remote '-r' <one of the commands above>`.
   
 `-r` is optional parameter that will wait for the response from the robot.
   
