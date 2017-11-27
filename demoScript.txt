@@ -2,6 +2,7 @@ move:U
 move:F
 move:D
 move:B
+wait:5
 move:L
 move:R
 move:R
