@@ -1,6 +1,7 @@
 --Requires
+local helpers = require("helpers")
 local component = require("component")
-local tunnel = component.tunnel
+local tunnel = assert(component.tunnel, "No Linked card detected")
 local computer = require("computer")
 local event = require("event")
 local term = require("term")
@@ -9,7 +10,7 @@ local robot = require("robot")
 
 --Robot Functions
 --These are wrappers for the functions available in the "robot" library.
---- Handles robots movement
+--- Handles robots movement.
 function move(direction)
   --Takes the direction as sent by the main program loop "F,B,L,R,A,U or D" and prints the command.
   print("move: " .. direction)
@@ -57,6 +58,13 @@ function move(direction)
   print()
 end
 
+--- Wait for x seconds.
+function wait(seconds)
+  print("Waiting for: " .. seconds .. "seconds.")
+  os.sleep(seconds)
+  tunnel.send("robot_slept")
+end
+
 --End Robot Functions
 
 
@@ -71,14 +79,14 @@ computer.beep(1000)
 tunnel.send("robot_booted")
 
 --Function to easily determine if string contains the specified string.
-function string.contains(message_st, pattern)
+--[[function string.contains(message_st, pattern)
   print("string.contains(): ")
   print(" message: " .. message_st .. " | pattern: " .. pattern)
 
   local result = string.match(message_st, pattern) ~= nil
   print(" Result: " .. tostring(result))
   return result
-end
+end]]
 
 --Main program loop
 while true do
@@ -89,10 +97,11 @@ while true do
   print("Received command: '" .. message .. "'")
 
   --Determines the command in the message and its parameters, and sends them forward accordingly.
-  if (string.contains(message, "move")) then move(string.sub(message, 6))
-  elseif (string.contains(message, "quit")) then tunnel.send("robot_quit") os.exit()
-  elseif (string.contains(message, "reboot")) then computer.shutdown(true)
-  elseif (string.contains(message, "connected")) then tunnel.send("robot_connected")
+  if (helpers.string.contains(message, "move")) then move(string.sub(message, 6))
+  elseif (helpers.string.contains(message, "quit")) then tunnel.send("robot_quit") os.exit()
+  elseif (helpers.string.contains(message, "reboot")) then computer.shutdown(true)
+  elseif (helpers.string.contains(message, "connected")) then tunnel.send("robot_connected")
+  elseif (helpers.string.contains(message, "wait")) then wait(tonumber(string.sub(message, 6)))
   else tunnel.send("nil_command")
   end
 end

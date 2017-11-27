@@ -3,12 +3,15 @@ package.loaded.buttonAPI = nil
 
 --Requires
 buttonAPI = require("buttonAPI")
-local event = require("event")
---local computer = require("computer") --Going to be used later
 local component = require("component")
+--local computer = require("computer") --Going to be used later
 local gpu = component.gpu
 local screen = component.screen
+local event = require("event")
+local fs = require("filesystem")
 local term = require("term")
+
+assert(fs.exists("/bin/robot_Remote.lua"), "No robot_Remote.lua detected in /bin") --TODO: Test this!
 --End Requires
 
 local retryCount = 0
