@@ -1,2 +1,2 @@
 ## Reasons
-Please ellaborate on the changes, why did you make them?
+Please elaborate on the changes, why did you make them?
