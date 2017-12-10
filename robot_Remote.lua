@@ -22,9 +22,9 @@ function validCommand(command)
 end
 
 if (#args == 1) then
-  --If only one agrument checks that it isn't "-r" then sends the argument,
+  --If only one argument check that it isn't "-r" then sends the argument,
   -- -- if it was "-r" calls the printUsage function
-  if not (args[1] == "-r") then tunnel.send(args[1])
+  if (args[1] ~= "-r") then tunnel.send(args[1])
   else printUsage()
   end
 
@@ -38,9 +38,8 @@ elseif (#args == 2) then
     validCommand(message)
   else printUsage()
   end
-end
 
-if (#args > 2 or #args < 1) then
+else
   --If there isn't any arguments or more than two, print usage of the program.
   printUsage()
 end
