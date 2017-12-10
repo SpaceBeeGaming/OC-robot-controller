@@ -36,14 +36,11 @@ function helpers.getAbsolutePath(callerPath, nameLength)
 end
 
 function helpers.math_round(num)
-  local lower = math.floor(num)
-  local higher = math.floor(num) + 1
-  local lowerV = -(lower - num)
-  local higherV = higher - num
-  if (higherV > lowerV) then
-    return lower
+  local flr = math.floor(num)
+  if (num < flr + 0.5) then
+    return flr
   else
-    return higher
+    return flr + 1
   end
 end
 
