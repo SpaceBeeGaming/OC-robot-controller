@@ -1,4 +1,4 @@
-# OC_robot_commander
+# OC-robot_commander
 This set of scripts allows you to control an OpenComputers robot from OC computer using buttons. 
 It is also possible to use easyish scripts to create action sequences. 
 
